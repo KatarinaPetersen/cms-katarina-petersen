@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="da">
+
+<head>
+    <!-- Metadata for bedre SEO og større chance for at brugerne vil finde webstedet. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="forside til mit CMS-system">
+    <meta name="keywords" content="forside, cms">
+    <meta name="author" content="Katarina Petersen">
+
+    <!-- Seneste compiled and minified CSS version. Indlæst vha. Content Delivery Networks (CDN) fra http://getbootstrap.dk/getting-started/#download-cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Link til font google-font -->
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
+
+    <!-- Min CSS -->
+    <link rel="stylesheet" href="./styles/main.css">
+
+    <title>Forside</title>
+</head>
+
+<body>
+    <nav id="backendNav" class="navbar navbar-fixed-top" role="navigation">
+        <div class="container">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="admin.html">Kontrolpanel</a>
+                </li>
+                <li>
+                    <a href="login.html">Log ud</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav id="frontendNav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img src="./images/logo.png" height="20px"></a>
+            </div>
+            <!--/.nav-header -->
+
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul id="publicNavigationbar" class="nav navbar-nav">
+                     <!-- her kommer dynamiske menuitems -->   
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <!-- .container, for at opnå automatisk indrykning og centrering (padding på begge sider) -->
+    <div id="frontendContainer" class="container">
+        <div class="row space-between">
+            <div class="col-lg-6">
+                <h1>Overskrift 1</h1>
+                <p>Lorem Ipsum er ganske enkelt fyldtekst fra print- og typografiindustrien. Lorem Ipsum har været standard
+                    fyldtekst siden 1500-tallet, hvor en ukendt trykker sammensatte en tilfældig spalte for at trykke en
+                    bog til sammenligning af forskellige skrifttyper. Lorem Ipsum har ikke alene overlevet fem århundreder,
+                    men har også vundet indpas i elektronisk typografi uden væsentlige ændringer. Sætningen blev gjordt kendt
+                    i 1960'erne med lanceringen af Letraset-ark, som indeholdt afsnit med Lorem Ipsum, og senere med layoutprogrammer</p>
+            </div>
+            <div class="col-lg-6">
+                <image class="img-responsive" alt="" src="./images/animal1.jpg">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Blandet Kategorier</h2>
+            </div>
+            <article class="col-md-4">
+                <image class="img-responsive" alt="billede" title="billede" src="./images/animal1.jpg">
+                    <div class="col-md-12">
+                        <div class="col-md-12 sammeHojde">
+                            <h3>Indlæg-overskrift</h3>
+                            <p>Indlæg-tekst</p>
+                        </div>
+                        <p>
+                            <a href="#" class="btn btn-default btn-lg" alt="Link til billede" title="Link til billede" role="button">Se mere</a>
+                        </p>
+                    </div>
+            </article>
+            <article class="col-md-4">
+                <image class="img-responsive" alt="billede" title="billede" src="./images/animal1.jpg">
+                    <div class="col-md-12">
+                        <div class="col-md-12 sammeHojde">
+                            <h3>Indlæg-overskrift</h3>
+                            <p>Indlæg-tekst</p>
+                        </div>
+                        <p>
+                            <a href="#" class="btn btn-default btn-lg" alt="Link til billede" title="Link til billede" role="button">Se mere</a>
+                        </p>
+                    </div>
+            </article>
+            <article class="col-md-4">
+                <image class="img-responsive" alt="billede" title="billede" src="./images/animal1.jpg">
+                    <div class="col-md-12">
+                        <div class="col-md-12 sammeHojde">
+                            <h3>Indlæg-overskrift</h3>
+                            <p>Indlæg-tekst</p>
+                        </div>
+                        <p>
+                            <a href="#" class="btn btn-default btn-lg" alt="Link til billede" title="Link til billede" role="button">Se mere</a>
+                        </p>
+                    </div>
+            </article>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container space-between">
+            <div class="col-md-6 col-xs-8">
+                <address>
+                    <h4>Kontakt</h4>
+                    <strong>Katarina Petersen</strong>
+                    <br>
+                    <p>Parkvej 17
+                        <br> 4490 Jerslev
+                        <br> Mail:
+                        <a href="mailto:katarina.petersen@outlook.com">katarina.petersen@outlook.com</a>
+                    </p>
+                </address>
+            </div>
+
+            <div class="col-md-6 col-xs-4 text-right">
+                <a href="https://www.facebook.com/katarina.petersen" target="blank" alt="Besøg mig på facebook" title="Besøg mig på facebook">
+                    <i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/katarinapetersen/" alt="Besøg mig på linkedin" title="Besøg mig på linkedin">
+                    <i class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+    <!-- Seneste compiled and minified JS version af jquery og bootstrap. Indlæst vha. Content Delivery Networks (CDN) 
+        fra http://getbootstrap.dk/getting-started/#download-cdn og http://jquery.com/download/#using-jquery-with-a-cdn -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Kontakt formular validering -->
+    <script src="./scripts/form.js"></script>
+
+    <!-- Styling af galleri articles højde -->
+    <script src="./scripts/sammeHojde.js"></script>
+
+   <!-- Oprettelse af dynamisk menu --> 
+    <script src="./scripts/menu.js"></script>
+</body>
+
+</html>
