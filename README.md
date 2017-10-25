@@ -2,7 +2,6 @@
 
 ### 1. Del.
 
-
 ### Indledningsvis vil vi starte med at demonstrere et simpelt API
 
 #### Et meget simpelt API der viser hvordan routes kan opbygges i node.js (næsten) uden brug af 3. parts moduler.
