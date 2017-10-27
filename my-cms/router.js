@@ -13,6 +13,7 @@ const routes = {
 // console.log(routes['/cat']); // udskriver hvilken metode som bliver brugt i funktionerne
 
 module.exports = function (req, res) {
+    helpers.logger(req);
     // console.log(req.url);// udskriver alt indhold på den kaldte funktion fra browseren. Kan også bruge (req.method) eller (req.url)
     var pathname = url.parse(req.url).pathname; // parse undersøger url´en pathname, som er alt det der kommer bagefter ? eller /
     var action = routes[pathname]; // pathname er den del af url´en, som kommmer efter ? eller /
@@ -47,7 +48,7 @@ module.exports = function (req, res) {
         var handler = action[method];
 
         if (handler) {
-            handler(res);
+            handler(req, res);
         }
         else {
             helpers.respond(res, `Metode ${req.method} ikke tilladt`, 404);

@@ -2,16 +2,16 @@ const helpers = require('./../helpers');
 
 // Ved at skrive http://localhost:3003/dog udskrives Vov-vov i browseren
 module.exports = {
-    'GET' :function(res) {
+    'GET' :function(req, res) {
         helpers.respond(res, 'GET: Vov vov')
     },
-    'POST' :function(res) {
+    'POST' :function(req, res) {
         helpers.respond(res, 'POST: Vov vov')
     },
-    'PUT' :function(res) {
+    'PUT' :function(req, res) {
         helpers.respond(res, 'PUT: Vov vov')
     },
-    'DELETE' :function(res) {
+    'DELETE' :function(req, res) {
         helpers.respond(res, 'DELETE: Vov vov')
     }
 };
