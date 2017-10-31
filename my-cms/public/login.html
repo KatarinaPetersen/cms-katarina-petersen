@@ -2,31 +2,42 @@
 <html lang="en">
 
 <head>
-        <!-- Metadata for bedre SEO og større chance for at brugerne vil finde webstedet. -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="loginside til mit CMS-system">
-        <meta name="keywords" content="loginside, cms">
-        <meta name="author" content="Katarina Petersen">
-    
-        <!-- Seneste compiled and minified CSS version. Indlæst vha. Content Delivery Networks (CDN) fra http://getbootstrap.dk/getting-started/#download-cdn -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-            crossorigin="anonymous">
-    
-        <!-- Link til font google-font -->
-        <link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
-    
-        <!-- Min CSS -->
-        <link rel="stylesheet" href="./styles/login_and_out.css">
-    
-        <title>Login</title>
-    </head>
+    <!-- Metadata for bedre SEO og større chance for at brugerne vil finde webstedet. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="loginside til mit CMS-system">
+    <meta name="keywords" content="loginside, cms">
+    <meta name="author" content="Katarina Petersen">
+
+    <!-- Seneste compiled and minified CSS version. Indlæst vha. Content Delivery Networks (CDN) fra http://getbootstrap.dk/getting-started/#download-cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Link til font google-font -->
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
+
+    <!-- Min CSS -->
+    <link rel="stylesheet" href="./styles/login_and_out.css">
+
+    <title>Login</title>
+</head>
 
 <body>
 
     <div class="container">
         <div id="form-row" class="row">
-            <form>
+
+            <form id="loginform" method="post" action="/login">
+                <h4>Login påkrævet</h4>
+
+
+                <!--msg-->
+                <input class="inputElements" type="text" name="username" placeholder="Brugernavn" autofocus value="admin">
+                <input class="inputElements" type="password" name="password" placeholder="Kodeord" value="admin">
+                <button class="inputElements" type="submit">Login</button>
+            </form>
+
+            <!-- <form id="loginform" method="post" action="/login">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Brugernavn</label>
                     <input class="form-control" id="username" type="text" placeholder="Skriv dit brugernavn">
@@ -42,7 +53,7 @@
                     </div>
                 </div>
                 <a id="login-btn" class="btn btn-primary btn-block btn-lg" href="index.html">Login</a>
-            </form>
+            </form> -->
             <div class="text-center">
                 <a id="d-block-first" class="d-block medium mt-3" href="register.html">Opret ny bruger</a>
                 <a class="d-block medium" href="forgot-password">Glemt Password?</a>

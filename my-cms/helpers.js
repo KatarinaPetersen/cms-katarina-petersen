@@ -3,6 +3,7 @@
 
 const fs = require('fs'); // 
 const path = require('path');
+const qs = require('querystring');
 
 const mimetypes = { // multipurpose internet .... extension
     '.html': 'text/html',
@@ -68,4 +69,22 @@ exports.logger = function (req) {
     logTxt += '; Method: ' + req.method;
     logTxt += '; Cookies: ' + req.headers.cookie;
     console.log(logTxt);
+}
+
+// login
+exports.redirect = function (res, url) {
+    res.writeHead(302, {location : url});
+    res.end();
+}
+
+exports.getFormData = function (req, callback) {
+    var userData = '', formData;
+    req.on('data', function(d) {
+        userData += d;
+    });
+
+    req.on('end', function(){
+        formData = qs.parse(userData); //parse er at undersøge, opdele og indsætte i et json obj
+        callback(formData);
+    });
 }

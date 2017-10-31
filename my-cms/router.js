@@ -7,6 +7,7 @@ const routes = {
     '/dog': require('./endpointhandlers/dog'),
     '/fox': require('./endpointhandlers/fox'),
     '/test': require('./endpointhandlers/test'),
+    '/login': require('./endpointhandlers/login'),
     '/menuitems': require('./endpointhandlers/menuitems')
 };
 
@@ -22,18 +23,18 @@ module.exports = function (req, res) {
         helpers.fileRespond(res, 'public/index.html');
         return;
     }
-    if (pathname === '/admin') { // henter index filen
-        helpers.fileRespond(res, 'public/admin.html');
-        return;
-    }
-    if (pathname === '/forgot-password') { // henter index filen
-        helpers.fileRespond(res, 'public/forgot-password.html');
-        return;
-    }
-    if (pathname === '/login') { // henter index filen
-        helpers.fileRespond(res, 'public/login.html');
-        return;
-    }
+    // if (pathname === '/admin') { // henter index filen
+    //     helpers.fileRespond(res, 'public/admin.html');
+    //     return;
+    // }
+    // if (pathname === '/forgot-password') { // henter index filen
+    //     helpers.fileRespond(res, 'public/forgot-password.html');
+    //     return;
+    // }
+    // if (pathname === '/login') { // henter index filen
+    //     helpers.fileRespond(res, 'public/login.html');
+    //     return;
+    // }
    
 
     var regexFile = pathname.match(/^\/((styles|scripts|images)\/)?\w+\.(html|css|js|jpg|png)$/);
