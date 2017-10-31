@@ -11,7 +11,7 @@ margin-top: 150px;
 }
 
 form {
-    padding: 100px 20px;
+    padding: 60px 20px;
     max-width: 500px;
     margin: auto;
     /* background-color: #0B877D; */
@@ -39,6 +39,7 @@ form p {
 
 label {
     color: rgba(255, 255, 255, 0.75);
+
 }
 
 #login-btn {

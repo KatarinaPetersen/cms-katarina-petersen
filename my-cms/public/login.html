@@ -26,25 +26,17 @@
 
     <div class="container">
         <div id="form-row" class="row">
-
             <form id="loginform" method="post" action="/login">
-                <h4>Login påkrævet</h4>
-
-
-                <!--msg-->
-                <input class="inputElements" type="text" name="username" placeholder="Brugernavn" autofocus value="admin">
-                <input class="inputElements" type="password" name="password" placeholder="Kodeord" value="admin">
-                <button class="inputElements" type="submit">Login</button>
-            </form>
-
-            <!-- <form id="loginform" method="post" action="/login">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Brugernavn</label>
-                    <input class="form-control" id="username" type="text" placeholder="Skriv dit brugernavn">
+                <div class="text-center mt-4 mb-5">
+                    <h4>Login</h4>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input class="form-control" id="password" type="password" placeholder="Skriv dit password">
+                    <label >Brugernavn</label>
+                    <input id="username" class="form-control input-lg" type="text" name="username" placeholder="Brugernavn" autofocus value="admin">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input id="password" class="form-control input-lg" type="password" name="password" placeholder="Kodeord" value="admin">
                 </div>
                 <div class="form-group">
                     <div class="form-check">
@@ -52,8 +44,10 @@
                             <input class="form-check-input" type="checkbox"> Husk Bruger</label>
                     </div>
                 </div>
-                <a id="login-btn" class="btn btn-primary btn-block btn-lg" href="index.html">Login</a>
-            </form> -->
+                <button id="login-btn" class="inputElements btn btn-primary btn-block btn-lg" type="submit">Login</button>
+            </form>
+
+
             <div class="text-center">
                 <a id="d-block-first" class="d-block medium mt-3" href="register.html">Opret ny bruger</a>
                 <a class="d-block medium" href="forgot-password">Glemt Password?</a>
