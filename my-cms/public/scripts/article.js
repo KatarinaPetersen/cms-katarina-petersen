@@ -18,11 +18,9 @@ document.querySelector("#publicNavigationbar").addEventListener("click", functio
         })
         .then(function (art) {
             console.log(art);
-            // jsonData.forEach(function(menuElement){
-            //     menu += '<li><a class="menuitem" href="#">' + menuElement.name + '</a></li>'
-            // });
-        })
+    
+                })
         .catch(function(err){
-            console.log(err);
-        });
-});
+                    console.log(err);
+                });
+// });
