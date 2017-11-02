@@ -33,3 +33,14 @@ exports.verifyUser = function (res, cred, callback) {
         callback(data);
     });
 };
+
+// henter articles fra db
+exports.getArticles = function (res, sql, values, callback) {
+    dbConnection.query(sql, values, function(err, data){
+        if(err){
+            helpers.respond(res, {besked: 'Der opstod en fejl i forbindelsen til databasen'}, 404);
+            return;
+        }
+        callback(data);
+    });
+};

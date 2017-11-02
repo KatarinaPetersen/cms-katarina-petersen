@@ -5,10 +5,14 @@ const database = require('./../data/database');
 
 module.exports = {
     'GET' :function(req, res) {
-        
+
         var query = url.parse(req.url).query;
         var params = qs.parse(query);
 
-        helpers.respond(res, params);
+        var sql = "SELECT * FROM articles WHERE fk_menu_id = ?";
+
+        database.getArticles(res, sql, [params.catid], function(data){
+            helpers.respond(res, data);
+        })
     }
 };

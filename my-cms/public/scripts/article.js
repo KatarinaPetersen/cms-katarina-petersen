@@ -17,10 +17,15 @@ document.querySelector("#publicNavigationbar").addEventListener("click", functio
             return data.json()
         })
         .then(function (art) {
-            console.log(art);
-    
-                })
-        .catch(function(err){
-                    console.log(err);
-                });
-// });
+            art.forEach(function(a){
+                var cnt = ;
+                // document.querySelector('#content.innerHTML')
+                // console.log(art);
+            })
+          
+
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+});
