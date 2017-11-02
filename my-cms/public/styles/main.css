@@ -166,3 +166,8 @@ address a:hover {
 li {
     list-style: none;
 }
+
+.itemActive {
+    border-bottom: 2px solid #345381;
+    margin-top: -5px;
+}

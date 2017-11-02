@@ -5,7 +5,7 @@ fetch('/menuitems')
     .then(function (jsonData) {
         var menu = '';
         jsonData.forEach(function(menuElement){
-            menu += '<li><a href="#">' + menuElement.name + '</a></li>'
+            menu += `<li><a class="menuitem" data-catid=${menuElement.id} href="#">${menuElement.name}</a></li>`
         });
         document.querySelector('#publicNavigationbar').innerHTML = menu;
     })
