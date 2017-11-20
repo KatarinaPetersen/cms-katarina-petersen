@@ -11,19 +11,8 @@ module.exports = {
         });
     },
 
-    'POST' : function(req, res){
-        var params = helpers.getFormData(req, res, function(formData){
-            if(helpers.objEmpty(formData)){
-                helpers.respond(res, {besked : "Der opstod en fejl"}, 500)
-                return;
-            }
-            
-        });
-    },
-
     // Opdaterer et menupunkts 'name' og/eller 'position' i databasen
     'PUT': function (req, res) {
-        
         var cookie = helpers.getCookies(req)  // Først hentes browserens cookie fra det indkommende request... 
         database.verifySession(res, cookie, function (data) {   // ...dernæst verificeres om sessionen er gyldig.
             if(helpers.objEmpty(data)){
@@ -42,6 +31,21 @@ module.exports = {
                 database.update(res, sql, values, function (data) {
                     helpers.respond(res, data);
                 });
+            });
+        });
+    },
+
+    'POST' : function(req, res){
+        var params = helpers.getFormData(req, res, function(formData){
+            if(helpers.objEmpty(formData)){
+                helpers.respond(res, {besked : "Der opstod en fejl"}, 500)
+                return;
+            }
+            
+            var values = [formData.catname, formData.catpos]
+            var sql = "INSERT INTO menu set name = ?, position = ?";
+            database.insertMenu(res, sql, values, function (data) {
+                helpers.respond(res, data);
             });
         });
     }

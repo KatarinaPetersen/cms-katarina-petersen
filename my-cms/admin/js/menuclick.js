@@ -3,21 +3,6 @@
     document.addEventListener("click", menuclick, true);
 
     function menuclick(e) {
-        // Forny timestamp på cookie
-
-        // var myCookie = 'id=';
-        // var cookieString = document.cookie;
-        // cookieString.split(';').forEach((c)=>{
-        //     if(c.match(/=/)){
-        //         if((c.split('=')[0]).trim()==='id'){
-        //             myCookie += c.split('=')[1].trim();
-        //         }
-        //     }
-        // })
-        // var expiretime = new Date(new Date().getTime() + 900000).toUTCString();
-        // myCookie += `; expires=${expiretime}`;
-        // document.cookie = myCookie;
-
         var caller = e.target;
         if (!caller.dataset.cmd) {
             return;
@@ -55,19 +40,31 @@
         var frm = document.querySelector(`#${formId}`);
         var frmData = new FormData(frm);
         fetch('/menuitems', {
-            credentials: 'include',
+            credentials: 'include', // inkluderer cookien
             method: 'put',
             body: frmData
         })
             .then(function (data) {
-                document.querySelector('div[data-cmd="categories"]').click();
+                document.querySelector('div[data-cmd="categories"]').click(); // simulering af museklik på kategorier, så tabellen bliver opdateret
                 // return data.json();
             })
-        // .then(function (json) {
-        //     console.log(json);
-        // })
     }
 
+    function catAdd(caller) {
+        var form = document.querySelector('#frmCatAdd');
+        var formData = new FormData(form);
+        fetch('/menuitems', {
+            method: 'post',
+            credentials: 'include',
+            body: FormData
+        })
+            .then(function (data) {
+                document.querySelector('div[data-cmd="categories"]').click(); // simulering af museklik på kategorier, så tabellen bliver opdateret
+                // return data.json();
+            })
+        // console.log(formData.getAll('catname'));
+        // alert(caller.dataset.cmd);
+    }
 
     function logout() {
         fetch('/logout', { credentials: 'include', method: 'delete' })
@@ -133,14 +130,6 @@
             })
     }
 
-    function catAdd(caller){
-        var form = document.querySelector('#frmCatAdd');
-        var formData = new FormData(form);
-        fetch()
-        // console.log(formData.getAll('catname'));
-        // alert(caller.dataset.cmd);
-        
-    }
 
     // Interval-functtion der holder øje med om session-cookien stadig eksisterer
     setInterval(function () {

@@ -52,7 +52,7 @@ exports.verifyUserCreds = function(res, creds, callback){
 // Opretter en session i DB
 exports.createSession = function(res, creds, callback){
     var r = helpers.rand();
-    var sql = "insert into user_sessions (user_id, session_key) values(?, ?)"
+    var sql = "insert into user_sessions (fk_user_id, session_key) values(?, ?)"
     connection.query(sql, [creds.id, r], function(err, data){
         if(err){
             helpers.respond(res, {besked : "Database ikke tilgængelig"}, 503);
@@ -65,7 +65,7 @@ exports.createSession = function(res, creds, callback){
 
 exports.deleteSession = function(res, cookie, callback){
     var sql = "delete from user_sessions where session_key = ?";
-    console.log(cookie);
+    // console.log(cookie);
     connection.query(sql, [cookie.id], function(err, data){
         if(err){
             helpers.respond(res, {besked : 'Database ikke tilgængelig'}, 503);
@@ -90,10 +90,19 @@ exports.verifySession = function(res, cookie, callback){
 exports.update = function(res, sql, values, callback){
     connection.query(sql, values, function(err, data){
         if(err){
-            helpers.respond(res, {besked: "Database ikke tilgængelig."}, 503);
+            helpers.respond(res, {besked: "Database ikke tilgængelig." + err}, 503);
             return;
         }
         callback(data);
     });
-    
+}
+
+exports.insertMenu = function(res, sql, values, callback){
+    connection.execute(sql, values, function(err, data){
+        if(err){
+            helpers.respond(res, {besked: "Database ikke tilgængelig." + err}, 503);
+            return;
+        }
+        callback(data);
+    });
 }

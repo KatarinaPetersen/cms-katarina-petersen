@@ -1,8 +1,7 @@
-
-module.exports = { // multipurpose internet .... extension
-    '.html' : {type:'text/html; utf-8', enc : 'utf-8'},
-    '.css'  : {type:'text/css; utf-8', enc : 'utf-8'},
-    '.js'   : {type:'text/js; utf-8', enc : 'utf-8'},
-    '.png'  : {type:'image/png; utf-8'},
-    '.jpg'  : {type:'image/jpg; utf-8'}
+module.exports = {
+    '.html' : {type : 'text/html; charset=utf-8', enc : 'utf-8'},
+    '.css'  : {type : 'text/css; charset=utf-8', enc : 'utf-8'},
+    '.js'   : {type : 'application/javascript; charset=utf-8', enc : 'utf-8'},
+    '.png'  : {type : 'image/png', enc : null},
+    '.jpg'  : {type : 'image/jpg', enc : null}
 };
