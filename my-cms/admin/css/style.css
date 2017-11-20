@@ -54,7 +54,7 @@ section#content{
 /* Navi informatiom */
 #adminnavigationbar{
     height: calc(100% - 40px);
-    width: 200px;
+    width: 100px;
     background: #555;
     font-size: 38px;
     padding-top: 25px;

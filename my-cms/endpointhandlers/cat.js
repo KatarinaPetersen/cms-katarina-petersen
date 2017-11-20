@@ -1,17 +1,16 @@
 const helpers = require('./../helpers');
 
-// Ved at skrive http://localhost:3003/cat udskrives Mijauv i browseren
 module.exports = {
-    'GET' :function(rep, res) {
-        helpers.respond(res, 'GET: Mijauv')
+    'GET' : function(req, res){
+
+        helpers.respond(res, 'Svar på GET: Miauuuuuv');
     },
-    'POST' :function(req, res) {
-        helpers.respond(res, 'POST: Mijauv')
+
+    'POST' : function(req, res){
+        helpers.respond(res, 'Svar på POST: Miauuuuuv');
     },
-    'PUT' :function(req, res) {
-        helpers.respond(res, 'PUT: Mijauv')
-    },
-    'DELETE' :function(req, res) {
-        helpers.respond(res, 'DELETE: Mijauv')
-    },
-};
+
+    'PUT' : function(req, res){
+        helpers.respond(res, 'Svar på PUT: Miauuuuuv');
+    }
+}

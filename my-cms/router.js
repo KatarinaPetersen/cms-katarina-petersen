@@ -1,36 +1,40 @@
 const url = require('url');
-const helpers = require('./helpers'); // bruges ikke pt
-const routes = require('./routeDefinitions');
+const helpers = require('./helpers');
+const database = require('./data/database');
+const logger = require('./logger');
+const routes = require('./routedefinitions');
 
-// console.log(routes['/cat']); // udskriver hvilken metode som bliver brugt i funktionerne
+// Denne funktion er arbejdshesten. Den kaldes hver gang serveren modtager en request fra en client
+module.exports = function(req, res){
+    logger(req, 4);
+    var method = req.method;
+    var pathname = url.parse(req.url).pathname;
 
-module.exports = function (req, res) {
-    helpers.logger(req);
-    // console.log(req.url);// udskriver alt indhold på den kaldte funktion fra browseren. Kan også bruge (req.method) eller (req.url)
-    var pathname = url.parse(req.url).pathname; // parse undersøger url´en pathname, som er alt det der kommer bagefter ? eller /
-    var action = routes[pathname]; // pathname er den del af url´en, som kommmer efter ? eller /
-
-    if (pathname === '/') { // henter index filen
+    // Check om routen er '/'
+    if(pathname === '/'){
         helpers.fileRespond(res, 'public/index.html');
         return;
     }
 
-    var regexFile = pathname.match(/^\/((styles|scripts|images)\/)?\w+\.(html|css|js|jpg|png)$/);
-    // console.log(regexFile[0]);
-    if (regexFile) {
+    // Regular expression der analyserer 'pathname' for fil-request til public filer
+    var rx = /^\/(img\/|css\/|js\/)?\w+\.(html|png|js|css)$/i;
+    var regexFile = pathname.match(rx);
+
+    if(regexFile){
+        // Hvis regex'en fandt noget der matcher
         helpers.fileRespond(res, 'public' + regexFile[0]);
         return;
     }
 
     // Vi skal undersøge om der requestes en fil fra admin-mappen
-    var rx = /^\/(admin\/(img\/|css\/|js\/)?[\w-]+\.(html|png|js|css))$/i;
+    rx = /^\/(admin\/(img\/|css\/|js\/)?[\w-]+\.(html|png|js|css))$/i;
     var adminFile = pathname.match(rx);
-    if (adminFile) {
+    if(adminFile){
         // Hvis der requestes for en fil i admin-mapen er det nødvendigt at 
         // at checkke om brugersessionen er gyldig.
         var cookie = helpers.getCookies(req);
-        database.verifySession(res, cookie, function (data) {
-            if (helpers.objEmpty(data)) {
+        database.verifySession(res, cookie, function(data){
+            if(helpers.objEmpty(data)){
                 helpers.redirect(res, '/')
                 return;
             }
@@ -39,21 +43,18 @@ module.exports = function (req, res) {
         return;
     }
 
-    if (action) { // hvis action er true
-        var method = req.method; // finder ud af hvilken metode der anvendes i endpointhandlers (GET eller POST)
+    var action = routes[pathname];
+    if(action){
+        // Hvis regex'en ikke fandt noget er vi her.
         var handler = action[method];
-
-        if (handler) {
+        if(handler){
             handler(req, res);
-        }
-        else {
-            helpers.respond(res, `Metode ${req.method} ikke tilladt`, 404);
             return;
         }
-        return; // Kan bruges i stedet for at fortsætte med en else-sætning. Hopper ud af funktionen og stopper, så der ikke bliver udført mere
+        helpers.respond(res, 'Metode ikke tilladt', 404);
+        return;
+    } 
+    else{
+        helpers.respond(res, 'Ressource findes ikke: ' + pathname, 404)
     }
-    // Hvis vi er her er der ikke fundet et route
-    // res.writeHead(404, { 'Content-type': 'application/json' });
-    // res.end('Route findes ikke');
-    helpers.respond(res, 'Route findes ikke', 404);
-}
+} 
