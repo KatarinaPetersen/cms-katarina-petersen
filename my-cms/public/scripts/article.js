@@ -18,12 +18,10 @@ document.querySelector("#publicNavigationbar").addEventListener("click", functio
         })
         .then(function (art) {
             art.forEach(function(a){
-                var cnt = ;
+                var cnt = "";
                 // document.querySelector('#content.innerHTML')
                 // console.log(art);
             })
-          
-
         })
         .catch(function (err) {
             console.log(err);

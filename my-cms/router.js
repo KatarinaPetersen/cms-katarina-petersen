@@ -1,16 +1,6 @@
 const url = require('url');
 const helpers = require('./helpers'); // bruges ikke pt
-
-// endpointhandlers indeholder 
-const routes = {
-    '/cat': require('./endpointhandlers/cat'),
-    '/dog': require('./endpointhandlers/dog'),
-    '/fox': require('./endpointhandlers/fox'),
-    '/test': require('./endpointhandlers/test'),
-    '/login': require('./endpointhandlers/login'),
-    '/article': require('./endpointhandlers/article'),
-    '/menuitems': require('./endpointhandlers/menuitems')
-};
+const routes = require('./routeDefinitions');
 
 // console.log(routes['/cat']); // udskriver hvilken metode som bliver brugt i funktionerne
 
@@ -24,12 +14,28 @@ module.exports = function (req, res) {
         helpers.fileRespond(res, 'public/index.html');
         return;
     }
-    
 
     var regexFile = pathname.match(/^\/((styles|scripts|images)\/)?\w+\.(html|css|js|jpg|png)$/);
     // console.log(regexFile[0]);
-    if(regexFile) {
+    if (regexFile) {
         helpers.fileRespond(res, 'public' + regexFile[0]);
+        return;
+    }
+
+    // Vi skal undersøge om der requestes en fil fra admin-mappen
+    var rx = /^\/(admin\/(img\/|css\/|js\/)?[\w-]+\.(html|png|js|css))$/i;
+    var adminFile = pathname.match(rx);
+    if (adminFile) {
+        // Hvis der requestes for en fil i admin-mapen er det nødvendigt at 
+        // at checkke om brugersessionen er gyldig.
+        var cookie = helpers.getCookies(req);
+        database.verifySession(res, cookie, function (data) {
+            if (helpers.objEmpty(data)) {
+                helpers.redirect(res, '/')
+                return;
+            }
+            helpers.fileRespond(res, adminFile[1]);
+        });
         return;
     }
 

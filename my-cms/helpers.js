@@ -4,25 +4,19 @@
 const fs = require('fs'); // 
 const path = require('path');
 const qs = require('querystring');
-
-const mimetypes = { // multipurpose internet .... extension
-    '.html': 'text/html',
-    '.css': 'text/css',
-    '.js': 'text/js',
-    '.png': 'image/png',
-    '.jpg': 'image/jpg'
-};
+const mimetypes = require('./mimetypes')
 
 exports.fileRespond = function (res, fileName) {
     // console.log(fileName);
-    fs.readFile(fileName, function (err, fileContent) { // fs.readfile indbygget metode som åbner filename
+    var ext = path.extname(fileName);
+    var mime = mimetypes[ext];
+
+    fs.readFile(fileName, mime.enc, function (err, fileContent) { // fs.readfile indbygget metode som åbner filename
         if (err) {
             exports.respond(res, 'Fil ikke fundet', 404);
             return;
         }
-        var ext = path.extname(fileName);
-        var mime = mimetypes[ext];
-        res.writeHead(200, { 'Content-type': mime })
+        res.writeHead(200, { 'Content-type': mime.type})
         res.end(fileContent);
     });
 };
