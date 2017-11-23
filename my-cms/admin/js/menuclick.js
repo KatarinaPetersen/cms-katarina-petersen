@@ -1,4 +1,3 @@
-
 (function () {
     document.addEventListener("click", menuclick, true);
 
@@ -20,10 +19,13 @@
                 categories();
                 break;
             case 'catEdit': // OK
-                catEdit(caller);
+                catEdit(caller); //caller fortæller hvad der bliver kaldet på
                 break;
             case 'catAdd':
                 catAdd(caller);
+                break;
+            case 'catDelete' :
+                catDelete(caller);
                 break;
             case 'article':
                 break
@@ -35,35 +37,37 @@
         }
     }
 
+    function catDelete(caller){
+        var formId = caller.dataset.id;
+        var form = document.querySelector(`#${formId}`);
+        var formData = new FormData(form);
+        fetch('/menuitems',{
+            method : 'delete', 
+            credentials: 'include',
+            body : formData
+        })
+        .then(function (data) {
+            document.querySelector('div[data-cmd="categories"]').click();
+        })        
+        .catch(function(err){
+            console.log(err);
+        });
+     
+    }
+
     function catEdit(caller) {
         var formId = caller.dataset.id
         var frm = document.querySelector(`#${formId}`);
         var frmData = new FormData(frm);
         fetch('/menuitems', {
-            credentials: 'include', // inkluderer cookien
+            credentials: 'include',
             method: 'put',
             body: frmData
         })
             .then(function (data) {
-                document.querySelector('div[data-cmd="categories"]').click(); // simulering af museklik på kategorier, så tabellen bliver opdateret
+                document.querySelector('div[data-cmd="categories"]').click();
                 // return data.json();
             })
-    }
-
-    function catAdd(caller) {
-        var form = document.querySelector('#frmCatAdd');
-        var formData = new FormData(form);
-        fetch('/menuitems', {
-            method: 'post',
-            credentials: 'include',
-            body: FormData
-        })
-            .then(function (data) {
-                document.querySelector('div[data-cmd="categories"]').click(); // simulering af museklik på kategorier, så tabellen bliver opdateret
-                // return data.json();
-            })
-        // console.log(formData.getAll('catname'));
-        // alert(caller.dataset.cmd);
     }
 
     function logout() {
@@ -99,10 +103,10 @@
                                             <input name="catpos" type="number" value="${d.position}">
                                         </div>
                                         <div class="cat-cell">
-                                            <img data-cmd="catEdit" data-id="frm${d.id}" class="iconImage clickable" src="img/plus-2x.png" title="Opdater">
+                                            <img data-cmd="catEdit" data-id="frm${d.id}" class="iconImage clickable" src="img/Refresh.png" title="Opdater">
                                         </div>
                                         <div class="cat-cell">
-                                            <img data-cmd="catDelete" data-id="frm${d.id}" class="iconImage clickable" src="img/minus-2x.png" title="Slet">
+                                            <img data-cmd="catDelete" data-id="frm${d.id}" class="iconImage clickable" src="img/Trash.png" title="Slet">
                                         </div>
                                     </div>
                                 </form>`;
@@ -120,8 +124,6 @@
                                     </div>
                                 </div>
                             <form>`;
-
-                // content += `<br><button type="button" data-cmd="catAdd" style="width:99%">Tilføj menupunkt</button>`
                 content += `</div>`;
                 document.querySelector('#content').innerHTML = content;
             })
@@ -130,6 +132,23 @@
             })
     }
 
+    function catAdd(caller){
+        var form = document.querySelector('#frmCatAdd');
+        // lav en kopi af formularen til at sende afsted. Derved undgåes at siden refreshes hvis den originale form sendes
+        var formData = new FormData(form);    fetch('/menuitems',{
+            method : 'post', 
+            credentials: 'include',
+            body : formData
+        })
+        .then(function (data) {
+            // tager fat i knappen KATEGORIER og simulerer et klik, så siden genindlæses og tabellen refreshes
+            document.querySelector('div[data-cmd="categories"]').click();
+        })        
+        .catch(function(err){
+            console.log(err);
+        });
+        
+    }
 
     // Interval-functtion der holder øje med om session-cookien stadig eksisterer
     setInterval(function () {

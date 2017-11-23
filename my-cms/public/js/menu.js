@@ -15,7 +15,6 @@
                 document.querySelector('#publicnavigationbar').innerHTML = menu;
             })
             .then(function () {
-                // henter indhold fra det første punkt i menuen og sætter ind på forsiden
                 document.querySelector('.menuitem').click();
             })
             .catch(function (err) {

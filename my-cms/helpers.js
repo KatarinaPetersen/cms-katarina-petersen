@@ -72,12 +72,12 @@ exports.getQueryParams = function(req){
     return params;
 }
 
-// GETFORMDATA, Henter formdata fra indkommende form
+// GETFORMDATA, Henter formdata fra indkommende form, som kan tage imod filer
 exports.getFormData = function(req, res, callback){
     // console.log(res); return;
-    var form = new multiparty.Form();
+    var form = new multiparty.Form(); 
 
-    form.parse(req, function(err, fields, files){
+    form.parse(req, function(err, fields, files){ // læser alle felter 
         if(err){
             exports.respond(res, {besked: 'Der opstod en fejl'}, 404);
             console.log(err);
