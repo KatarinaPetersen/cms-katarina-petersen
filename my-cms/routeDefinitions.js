@@ -3,7 +3,7 @@ module.exports = {
     '/cat'          : require('./endpointhandlers/cat'),        // Test route i forbindelse med intro
     '/dog'          : require('./endpointhandlers/dog'),        // Test route i forbindelse med intro
     '/menuitems'    : require('./endpointhandlers/menuitems'),
-    '/useritems'    : require('./endpointhandlers/useritems'),  // Henter menupunkter fra DB
+    '/users'        : require('./endpointhandlers/users'),  // Henter menupunkter fra DB
     '/test'         : require('./endpointhandlers/test'),       // Test route
     '/login'        : require('./endpointhandlers/login'),      // Login route, handler håndterer både GET og POST
     '/article'      : require('./endpointhandlers/article'),    // Article route handler håndterer GET, POST, 

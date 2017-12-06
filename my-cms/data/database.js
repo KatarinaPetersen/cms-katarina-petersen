@@ -27,7 +27,8 @@ exports.menuselect = function(res, sql, callback){
 exports.articleselect = function(res, sql, values, callback){
     connection.query(sql, values, function(err, data){
         if(err){
-            helpers.respond(res, {besked : 'Database ikke tilgængelig'}, 503);
+            helpers.respond(res, {besked : 'zzzDatabase ikke tilgængelig'}, 503);
+            console.log (err);
             return;
         }
         callback(data);
